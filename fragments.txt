@@ -1,0 +1,47 @@
+# i = 1
+# for number in numbers_objects:
+#     print(number)
+
+# for object in objects:
+#      print(object)
+# print(objects)
+
+
+# def genRasp(objects, i):
+#     while i <= 10:
+#         random_element = random.choice(objects)
+#         tempArray[i] = random_element
+#         print(random_element)
+#         i += 1
+
+
+# for object in objects:
+#     print(object)
+
+# genRasp(objects, i)
+# print(tempArray)
+-----------------------------------
+while couter_subjects <= 10:
+    subjects_weights = [subject['rang'] for subject in subjects]
+    SelectSubject = random.choices(subjects, subjects_weights)[0]
+    print(SelectSubject)
+    couter_subjects += 1
+------------------------
+# GenRaspForClass(count_lesson)
+
+
+# class Rasp:
+
+#     def __init__(self, studyClass):
+#         self.studyClass = studyClass
+
+#     def display_info(self):
+#         print(f"Class: {self.studyClass}")
+
+
+# rasp = Rasp(studyClass[1])
+# rasp.display_info()
+# while day!=0:
+
+#     day+=1
+------------------------
