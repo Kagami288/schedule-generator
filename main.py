@@ -28,13 +28,11 @@ def GetLessons(iterator): # получаем уроки с GetLesson
 def GetRaspWeek(): # генерируем раписание по неделям
     for dayWeek in DaysWeek: # перебор дней недели
         print(dayWeek["name"]) # вывод дня недели
-<<<<<<< HEAD
         GetLessons(iterator) # вывод 4 уроков
-=======
         lessons = GetLessons(iterator)
         for lesson in lessons:
             print(lesson) # вывод 4 уроков
->>>>>>> f2677e14932794e68693107b8eb6becb16b362f1
+
 
 
 
