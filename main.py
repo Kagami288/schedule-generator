@@ -1,19 +1,36 @@
 import random
 
-iterator = 1
+iterator = 1 #отвечает за количество генерируемых уроков
 
-def GetLesson(subjects):
-    subjects_weights = [subject['rang'] for subject in subjects]
-    SelectSubject = random.choices(subjects, subjects_weights)[0]
-    print(SelectSubject)
-def GetLessons(iterator):
-    while iterator <= 4:  # Генерация расписания для 1 класса
-        lesson = GetLesson(subjects)
+def GetLesson(subjects):# случайная выборка из subjects
+    # # subjects_weights = [subject['rang'] for subject in subjects] # перебор объекта по рангу трудности / можно поменять критерий на имя или id
+    # for subject in subjects:
+    #     if subject['hours'] > 0:
+    #         subjects_weights = subject['rang']
+    #         subject['hours']-=1
+    
+    # SelectSubject = random.choices(subjects, subjects_weights)[0] # рандомно выбирает по id
+    check = False # Нужна для while
+    subjects_weights = [subject['rang'] for subject in subjects] # перебор объекта по рангу трудности / можно поменять критерий на имя или id
+    while check == False:
+        SelectSubject = random.choices(subjects, subjects_weights)[0] # рандомно выбирает по id
+        if SelectSubject["hours"] > 0: 
+            index = subjects.index(SelectSubject) # находит индекс выбранного предмета     
+            subjects[index]["hours"]-=1 # вычитает из часов использованный урок
+            check = True
+            return SelectSubject # возвращает предмет
+def GetLessons(iterator): # получаем уроки с GetLesson
+    lesson = []                                        # решил объявить списком для удобства
+    while iterator <= 4:  # генерация расписания для одного
+        lesson.append(GetLesson(subjects)) #добавляет урок в список
         iterator += 1
-def GetRaspWeek():
-    for dayWeek in DaysWeek:
-        print(dayWeek["name"])
-        GetLessons(iterator)
+    return lesson
+def GetRaspWeek(): # генерируем раписание по неделям
+    for dayWeek in DaysWeek: # перебор дней недели
+        print(dayWeek["name"]) # вывод дня недели
+        lessons = GetLessons(iterator)
+        for lesson in lessons:
+            print(lesson) # вывод 4 уроков
 
 
 
@@ -48,60 +65,71 @@ subjects = [
         "id": 1,
         "name": "Математика",
         "rang": 8,
+        "hours": 5,
     },
     {
         "id": 2,
         "name": "Русский",
         "rang": 7,
+        "hours": 4,
     },
     {
         "id": 3,
         "name": "Английский",
         "rang": 7,
+        "hours": 1,
     },
     {
         "id": 4,
         "name": "Природоведение",
         "rang": 6,
+        "hours": 2,
     },
     {
         "id": 5,
         "name": "Информатика",
         "rang": 6,
+        "hours": 1,
     },
     {
         "id": 7,
         "name": "Литература",
         "rang": 5,
+        "hours": 4,
     },
     {
         "id": 8,
         "name": "История",
         "rang": 4,
+        "hours": 1,
     },
     {
         "id": 9,
         "name": "Рисование",
         "rang": 3,
+        "hours": 1,
     },
     {
         "id": 10,
         "name": "Музыка",
         "rang": 3,
+        "hours": 1,
     },
     {
         "id": 11,
         "name": "Труд",
         "rang": 2,
+        "hours": 1,
     },
     {
         "id": 12,
         "name": "Физическая культура",
         "rang": 1,
+        "hours": 3,
     }
 
 ]
 
 
 
-GetRaspWeek()
+GetRaspWeek() # вызов замыкающей функции
