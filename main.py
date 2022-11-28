@@ -3,13 +3,6 @@ import random
 iterator = 1 #отвечает за количество генерируемых уроков
 
 def GetLesson(subjects):# случайная выборка из subjects
-    # # subjects_weights = [subject['rang'] for subject in subjects] # перебор объекта по рангу трудности / можно поменять критерий на имя или id
-    # for subject in subjects:
-    #     if subject['hours'] > 0:
-    #         subjects_weights = subject['rang']
-    #         subject['hours']-=1
-    
-    # SelectSubject = random.choices(subjects, subjects_weights)[0] # рандомно выбирает по id
     check = False # Нужна для while
     subjects_weights = [subject['rang'] for subject in subjects] # перебор объекта по рангу трудности / можно поменять критерий на имя или id
     while check == False:
@@ -28,7 +21,6 @@ def GetLessons(iterator): # получаем уроки с GetLesson
 def GetRaspWeek(): # генерируем раписание по неделям
     for dayWeek in DaysWeek: # перебор дней недели
         print(dayWeek["name"]) # вывод дня недели
-        GetLessons(iterator) # вывод 4 уроков
         lessons = GetLessons(iterator)
         for lesson in lessons:
             print(lesson) # вывод 4 уроков
