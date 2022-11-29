@@ -1,4 +1,5 @@
 import random
+import School_class as SClass
 
 iterator = 1 #отвечает за количество генерируемых уроков
 
@@ -12,13 +13,15 @@ def GetLesson(subjects):# случайная выборка из subjects
             subjects[index]["hours"]-=1 # вычитает из часов использованный урок
             check = True
             return SelectSubject # возвращает предмет
-def GetLessons(iterator): # получаем уроки с GetLesson
+def GetLessons(iterator): # получаем уроки с GetLesson5
     lesson = []                                        # решил объявить списком для удобства
     while iterator <= 4:  # генерация расписания для одного
         lesson.append(GetLesson(subjects)) #добавляет урок в список
         iterator += 1
     return lesson
 def GetRaspWeek(): # генерируем раписание по неделям
+    OneA = SClass.School_Class(1,"A")
+    OneA.get_infoClass()
     for dayWeek in DaysWeek: # перебор дней недели
         print(dayWeek["name"]) # вывод дня недели
         lessons = GetLessons(iterator)
