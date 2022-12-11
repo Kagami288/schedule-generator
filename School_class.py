@@ -1,22 +1,18 @@
 import copy
-class School_Class:
-    num = 0
-    parallel = 0
-    TimeTable = []
+from typing import List
 
-    def __init__(self,num, parallel) -> None:
+class SchoolClass:
+
+    def __init__(self, num: int, parallel: int) -> None:
         self.num = num
         self.parallel = parallel
+        self.time_table = []
 
-    def set_TimeTable(self,TimeTable):
-        self.TimeTable = copy.deepcopy(TimeTable)
+    def set_time_table(self, time_table: List[str]) -> None:
+        self.time_table = time_table
 
-        
-    def get_infoClass(self):
-        print(f"Учебный класс: {self.num}{self.parallel}")
-    
-    # def get_NameSClass(self):
-    #     print(f"Учебный класс: {self.num}{self.parallel}")
+    def get_info_class(self) -> str:
+        return f"Учебный класс: {self.num}{self.parallel}"
 
-    def get_TimeTable(self):
-        pass
+    def get_time_table(self) -> List[str]:
+        return self.time_table

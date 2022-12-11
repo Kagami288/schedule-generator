@@ -1,34 +1,35 @@
 import random
 import School_class as SClass
 
-iterator = 1 #отвечает за количество генерируемых уроков
+def get_lesson(subjects):
+    """Randomly selects a subject from the given list of subjects, and returns it."""
+    # Select a random subject, making sure that it has not been used up
+    subject = random.choices(subjects, [subject['rang'] for subject in subjects])[0]
+    while subject['hours'] <= 0:
+        subject = random.choices(subjects, [subject['rang'] for subject in subjects])[0]
 
-def GetLesson(subjects):# случайная выборка из subjects
-    check = False # Нужна для while
-    subjects_weights = [subject['rang'] for subject in subjects] # перебор объекта по рангу трудности / можно поменять критерий на имя или id
-    while check == False:
-        SelectSubject = random.choices(subjects, subjects_weights)[0] # рандомно выбирает по id
-        if SelectSubject["hours"] > 0: 
-            index = subjects.index(SelectSubject) # находит индекс выбранного предмета     
-            subjects[index]["hours"]-=1 # вычитает из часов использованный урок
-            check = True
-            return SelectSubject # возвращает предмет
-def GetLessons(iterator): # получаем уроки с GetLesson5
-    lesson = []                                        # решил объявить списком для удобства
-    while iterator <= 4:  # генерация расписания для одного
-        lesson.append(GetLesson(subjects)) #добавляет урок в список
-        iterator += 1
-    return lesson
-def GetRaspWeek(): # генерируем раписание по неделям
-    OneA = SClass.School_Class(1,"A")
-    OneA.get_infoClass()
-    for dayWeek in DaysWeek: # перебор дней недели
-        print(dayWeek["name"]) # вывод дня недели
-        lessons = GetLessons(iterator)
+    # Decrement the number of hours remaining for the selected subject
+    index = subjects.index(subject)
+    subjects[index]["hours"] -= 1
+
+    return subject
+
+def get_lessons(subjects, num_lessons=4):
+    """Returns a list of random lessons, with a length equal to the given number of lessons."""
+    lessons = []
+    for i in range(num_lessons):
+        lessons.append(get_lesson(subjects))
+    return lessons
+
+def get_rasp_week():
+    """Generates a weekly schedule for a school class."""
+    OneA = SClass.SchoolClass(1, "A")
+    OneA.get_info_class()
+    for dayWeek in DaysWeek:
+        print(dayWeek["name"])
+        lessons = get_lessons(subjects)
         for lesson in lessons:
-            print(lesson) # вывод 4 уроков
-
-
+            print(lesson)
 
 
 DaysWeek = [
@@ -129,4 +130,4 @@ subjects = [
 
 
 
-GetRaspWeek() # вызов замыкающей функции
+get_rasp_week() # вызов замыкающей функции
