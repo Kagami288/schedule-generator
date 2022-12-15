@@ -1,5 +1,6 @@
 import random
 import School_class as SClass
+import interface as IF
 
 iterator = 1 #отвечает за количество генерируемых уроков
 
@@ -24,6 +25,7 @@ def GetRaspWeek(): # генерируем раписание по неделям
     OneA.get_infoClass()
     for dayWeek in DaysWeek: # перебор дней недели
         print(dayWeek["name"]) # вывод дня недели
+        IF.ui.Print_TimeTable(dayWeek["name"])
         lessons = GetLessons(iterator)
         for lesson in lessons:
             print(lesson) # вывод 4 уроков
